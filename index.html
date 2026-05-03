@@ -1022,14 +1022,52 @@ const WD_EVENTS=[
   'Bello from Kano just withdrew ₦10,000 🎉',
   'Funmi from Ibadan just withdrew ₦18,000 🎉',
   'Emeka from Abuja just withdrew ₦30,000 🎉',
-  'Ngozi from PH just withdrew ₦12,500 🎉',
+  'Ngozi from Port Harcourt just withdrew ₦12,500 🎉',
   'Tunde from Benin just withdrew ₦25,000 🎉',
+  'Ada from Lagos just withdrew ₦45,000 🎉',
+  'Chioma from Onitsha just withdrew ₦17,500 🎉',
+  'Seun from Osogbo just withdrew ₦33,000 🎉',
+  'Hauwa from Kaduna just withdrew ₦20,000 🎉',
+  'Rotimi from Akure just withdrew ₦55,000 🎉',
+  'Blessing from Uyo just withdrew ₦14,000 🎉',
+  'Musa from Sokoto just withdrew ₦28,500 🎉',
+  'Yetunde from Ilorin just withdrew ₦11,000 🎉',
+  'Victor from Benin City just withdrew ₦75,000 🎉',
+  'Adaeze from Nnewi just withdrew ₦42,000 🎉',
+  'Femi from Ado-Ekiti just withdrew ₦19,000 🎉',
+  'Fatima from Maiduguri just withdrew ₦16,500 🎉',
+  'Uche from Enugu just withdrew ₦60,000 🎉',
+  'Kemi from Ibadan just withdrew ₦38,000 🎉',
+  'Kunle from Abeokuta just withdrew ₦13,500 🎉',
+  'Sandra from Calabar just withdrew ₦90,000 🎉',
+  'Ifeanyi from Asaba just withdrew ₦27,000 🎉',
+  'Grace from Jos just withdrew ₦48,000 🎉',
+  'Dare from Akure just withdrew ₦21,500 🎉',
+  'Tosin from Lagos just withdrew ₦35,000 🎉',
+  'Chukwu from Owerri just withdrew ₦50,000 🎉',
+  'Miriam from Abuja just withdrew ₦23,000 🎉',
+  'Nnamdi from Onitsha just withdrew ₦40,000 🎉',
+  'Jummai from Bauchi just withdrew ₦15,500 🎉',
+  'Kelvin from Warri just withdrew ₦62,000 🎉',
+  'Florence from Calabar just withdrew ₦18,500 🎉',
+  'Ibrahim from Zaria just withdrew ₦29,000 🎉',
+  'Precious from Umuahia just withdrew ₦44,000 🎉',
+  'Babatunde from Abeokuta just withdrew ₦70,000 🎉',
+  'Zainab from Katsina just withdrew ₦16,000 🎉',
+  'Godwin from Sapele just withdrew ₦52,000 🎉',
+  'Loveth from Calabar just withdrew ₦24,500 🎉',
+  'Madu from Aba just withdrew ₦37,000 🎉',
+  'Ruth from Makurdi just withdrew ₦11,500 🎉',
+  'Clement from Awka just withdrew ₦80,000 🎉',
 ];
 let wdIdx=0;
 setInterval(()=>{
   wdIdx=(wdIdx+1)%WD_EVENTS.length;
+  // Random amount between ₦10k–₦95k in multiples of ₦2,500
+  const randAmt=(Math.floor(Math.random()*34)+4)*2500;
+  const baseMsg=WD_EVENTS[wdIdx].replace(/₦[\d,]+/,`₦${randAmt.toLocaleString('en-NG')}`);
   const el=document.getElementById('wdBannerTxt');
-  if(el)el.textContent=WD_EVENTS[wdIdx];
+  if(el)el.textContent=baseMsg;
 },5000);
 
 /* ═══════════════════════════════
@@ -1041,19 +1079,61 @@ const WD_NAMES=[
   {av:'👩🏿',name:'Amaka from Abuja',amount:'₦10,000',time:'9min ago'},
   {av:'👨🏽',name:'Bello from Kano',amount:'₦18,000',time:'14min ago'},
   {av:'👩🏾',name:'Funmi from Ibadan',amount:'₦30,000',time:'20min ago'},
+  {av:'👨🏿',name:'Emeka from Owerri',amount:'₦12,500',time:'23min ago'},
+  {av:'👩🏽',name:'Ngozi from Port Harcourt',amount:'₦45,000',time:'28min ago'},
+  {av:'👨🏾',name:'Tunde from Abeokuta',amount:'₦17,000',time:'31min ago'},
+  {av:'👩🏾',name:'Chioma from Onitsha',amount:'₦28,000',time:'35min ago'},
+  {av:'👨🏽',name:'Seun from Osogbo',amount:'₦11,500',time:'39min ago'},
+  {av:'👩🏿',name:'Hauwa from Kaduna',amount:'₦60,000',time:'42min ago'},
+  {av:'👨🏾',name:'Rotimi from Akure',amount:'₦33,000',time:'46min ago'},
+  {av:'👩🏾',name:'Blessing from Uyo',amount:'₦19,500',time:'50min ago'},
+  {av:'👨🏿',name:'Musa from Sokoto',amount:'₦25,000',time:'54min ago'},
+  {av:'👩🏽',name:'Yetunde from Ilorin',amount:'₦14,000',time:'58min ago'},
+  {av:'👨🏾',name:'Victor from Benin City',amount:'₦75,000',time:'1hr ago'},
+  {av:'👩🏾',name:'Adaeze from Nnewi',amount:'₦42,000',time:'1hr ago'},
+  {av:'👨🏽',name:'Femi from Ado-Ekiti',amount:'₦20,000',time:'1hr ago'},
+  {av:'👩🏿',name:'Fatima from Maiduguri',amount:'₦16,500',time:'1hr ago'},
+  {av:'👨🏾',name:'Uche from Enugu',amount:'₦55,000',time:'1hr ago'},
+  {av:'👩🏾',name:'Kemi from Ibadan',amount:'₦38,000',time:'2hrs ago'},
+  {av:'👨🏿',name:'Kunle from Abeokuta',amount:'₦13,000',time:'2hrs ago'},
+  {av:'👩🏽',name:'Sandra from Calabar',amount:'₦90,000',time:'2hrs ago'},
+  {av:'👨🏾',name:'Ifeanyi from Asaba',amount:'₦27,500',time:'2hrs ago'},
+  {av:'👩🏾',name:'Grace from Jos',amount:'₦48,000',time:'2hrs ago'},
 ];
 function buildWdFeed(){
   const feed=document.getElementById('withdrawFeed');
   if(!feed)return;
   feed.innerHTML='';
-  WD_NAMES.forEach((w,i)=>{
+  // Shuffle and show first 6
+  const shuffled=[...WD_NAMES].sort(()=>Math.random()-.5);
+  shuffled.slice(0,6).forEach((w,i)=>{
     feed.innerHTML+=`<div class="wf-item" style="animation-delay:${i*.08}s">
       <div class="wf-av">${w.av}</div>
       <div class="wf-body"><div class="wf-name">${w.name}</div><div class="wf-loc">via Bank Transfer</div></div>
       <div><div class="wf-amount">${w.amount}</div><div class="wf-time">${w.time}</div></div>
     </div>`;
   });
-}
+
+  // Rotate a new entry every 4 seconds
+  let idx=6;
+  setInterval(()=>{
+    if(idx>=WD_NAMES.length)idx=0;
+    const w=WD_NAMES[idx++];
+    // Random amount bump ₦10k–₦100k
+    const randAmt=(Math.floor(Math.random()*19)+1)*5000;
+    const amtStr=`₦${randAmt.toLocaleString('en-NG')}`;
+    const newItem=document.createElement('div');
+    newItem.className='wf-item';
+    newItem.style.animation='slideIn .4s ease both';
+    newItem.innerHTML=`
+      <div class="wf-av">${w.av}</div>
+      <div class="wf-body"><div class="wf-name">${w.name}</div><div class="wf-loc">via Bank Transfer</div></div>
+      <div><div class="wf-amount">${amtStr}</div><div class="wf-time">just now</div></div>`;
+    feed.insertBefore(newItem,feed.firstChild);
+    // Keep max 6 visible
+    while(feed.children.length>6)feed.removeChild(feed.lastChild);
+  },4000);
+  }
 
 /* ═══════════════════════════════
    SPIN GAME
@@ -1235,6 +1315,51 @@ const NOTIFS=[
   {av:'👩🏾',name:'Blessing U.',time:'3m ago',msg:`Withdrawal of <span class='ng'>₦15,000</span> processing now! 🔥`},
   {av:'👨🏿',name:'Bello M.',time:'2m ago',msg:`Daily check-in streak — <span class='nb'>₦150 bonus!</span> 💪`},
   {av:'👩🏽',name:'Ngozi P.',time:'4m ago',msg:`5 referrals today — <span class='ng'>₦5,000 earned!</span> Keep going 🚀`},
+  {av:'👨🏾',name:'Tunde A.',time:'5m ago',msg:`Spin landed on <span class='ng'>₦1,500</span> — balance updated! 🎰`},
+  {av:'👩🏾',name:'Chioma N.',time:'3m ago',msg:`Just referred her 3rd friend — <span class='ng'>₦3,000 total</span> earned 🙌`},
+  {av:'👨🏿',name:'Seun B.',time:'6m ago',msg:`Upkeep cash of <span class='ny'>₦30,000</span> credited to account! 😭`},
+  {av:'👩🏽',name:'Fatima A.',time:'4m ago',msg:`Joined Telegram task done — <span class='ng'>+₦300 bonus</span> added ✅`},
+  {av:'👨🏾',name:'Uche O.',time:'7m ago',msg:`Withdrawal of <span class='ng'>₦20,000</span> approved and sent! 🔥🎉`},
+  {av:'👩🏾',name:'Kemi S.',time:'5m ago',msg:`Referred 2 friends today — <span class='ng'>₦2,000 earned</span> so far 💪`},
+  {av:'👨🏽',name:'Dare F.',time:'8m ago',msg:`Daily spin — won <span class='ng'>₦500</span> this time! Better than zero 😂`},
+  {av:'👩🏿',name:'Peace E.',time:'6m ago',msg:`Business startup fund of <span class='ny'>₦100,000</span> application submitted! 🚀`},
+  {av:'👨🏾',name:'Lanre M.',time:'9m ago',msg:`Share task completed — <span class='ng'>+₦500</span> just added to balance 🙏`},
+  {av:'👩🏾',name:'Yetunde F.',time:'7m ago',msg:`Total earnings this week: <span class='ng'>₦12,000</span> 😭 StudEarn is real!`},
+  {av:'👨🏿',name:'Sunday O.',time:'10m ago',msg:`Just hit ₦10,000 balance — <span class='ng'>withdrawal unlocked!</span> 🎉🔥`},
+  {av:'👩🏽',name:'Adaeze P.',time:'8m ago',msg:`Referral bonus from <span class='ng'>4 friends</span> — ₦4,000 credited! 😭❤️`},
+  {av:'👨🏾',name:'Femi K.',time:'11m ago',msg:`Spin gave me <span class='ng'>₦2,500</span> today — maximum prize! 😭🙏`},
+  {av:'👩🏾',name:'Nneka O.',time:'9m ago',msg:`Watch & Earn done 3 times — <span class='ng'>₦600 earned</span> just watching ✅`},
+  {av:'👨🏽',name:'Rotimi A.',time:'12m ago',msg:`School fees support of <span class='ny'>₦200,000</span> — application approved 🎓`},
+  {av:'👩🏿',name:'Grace U.',time:'10m ago',msg:`My 10th referral just joined — <span class='ng'>withdrawal processing</span> now! 🔥`},
+  {av:'👨🏾',name:'Victor N.',time:'13m ago',msg:`Today's total: <span class='ng'>₦3,200</span> from spin + tasks + referral 💪`},
+  {av:'👩🏾',name:'Bimpe L.',time:'11m ago',msg:`Check-in streak day 7 — <span class='nb'>bonus multiplied!</span> ₦1,050 earned 🔥`},
+  {av:'👨🏿',name:'Musa D.',time:'14m ago',msg:`Referred my whole class — <span class='ng'>₦15,000 earned</span> in one day 😭`},
+  {av:'👩🏽',name:'Tosin R.',time:'12m ago',msg:`Laptop grant of <span class='ny'>₦80,000</span> application submitted! Need it bad 🙏`},
+  {av:'👨🏾',name:'Kunle B.',time:'15m ago',msg:`Just got <span class='ng'>₦1,000</span> welcome bonus after signing up! Real 😂✅`},
+  {av:'👩🏾',name:'Sandra M.',time:'13m ago',msg:`Referred 7 friends — <span class='ng'>₦7,000 total</span> in my balance 🎉`},
+  {av:'👨🏽',name:'Ifeanyi C.',time:'16m ago',msg:`Spin won me <span class='ng'>₦1,000</span> — adding to my withdrawal target 🔥`},
+  {av:'👩🏿',name:'Hauwa Y.',time:'14m ago',msg:`Emergency support of <span class='ny'>₦50,000</span> — thank God for this platform 😭`},
+  {av:'👨🏾',name:'Akin T.',time:'17m ago',msg:`All 5 daily tasks completed — <span class='ng'>₦3,650 earned</span> today! 💪`},
+  {av:'👩🏾',name:'Remi O.',time:'15m ago',msg:`My referral link is going viral in my school — <span class='ng'>₦20,000 earned</span>! 🚀`},
+  {av:'👨🏿',name:'Chukwu E.',time:'18m ago',msg:`Watch task x5 — <span class='ng'>₦1,000 earned</span> just from watching 😂✅`},
+  {av:'👩🏽',name:'Sola A.',time:'16m ago',msg:`First withdrawal of <span class='ng'>₦10,500</span> approved! StudEarn is legit 🔥`},
+  {av:'👨🏾',name:'Dele F.',time:'19m ago',msg:`Referred my roommates — <span class='ng'>₦4,000 earned</span> from 4 people 🙌`},
+  {av:'👩🏾',name:'Cynthia N.',time:'17m ago',msg:`Daily spin — <span class='ng'>₦2,500 maximum!</span> God is good 😭🙏`},
+  {av:'👨🏽',name:'Ayo M.',time:'20m ago',msg:`Balance hit <span class='ng'>₦15,000</span> — withdrawal submitted! 🎉`},
+  {av:'👩🏿',name:'Jummai B.',time:'18m ago',msg:`Upkeep support of <span class='ny'>₦60,000</span> processing — praying it comes through 🙏`},
+  {av:'👨🏾',name:'Kelvin O.',time:'21m ago',msg:`Share task every day — <span class='ng'>₦3,500 earned</span> from shares alone! 💪`},
+  {av:'👩🏾',name:'Florence A.',time:'19m ago',msg:`10 referrals done! <span class='ng'>Withdrawal now unlocked!</span> Let's go 🔥🎉`},
+  {av:'👨🏿',name:'Ibrahim S.',time:'22m ago',msg:`Spin gave ₦100 today but <span class='nb'>still earning!</span> Back tomorrow 😂`},
+  {av:'👩🏽',name:'Precious U.',time:'20m ago',msg:`My sister joined through my link — <span class='ng'>₦1,000 bonus</span> credited! ❤️`},
+  {av:'👨🏾',name:'Babatunde F.',time:'23m ago',msg:`Total balance: <span class='ng'>₦18,500</span> — almost at my target 🎯🔥`},
+  {av:'👩🏾',name:'Miriam C.',time:'21m ago',msg:`Check-in + spin + share = <span class='ng'>₦3,150 earned</span> in one hour! 😭`},
+  {av:'👨🏽',name:'Nnamdi O.',time:'24m ago',msg:`Project fund of <span class='ny'>₦120,000</span> — final year project sorted! 🎓🙏`},
+  {av:'👩🏿',name:'Zainab M.',time:'22m ago',msg:`Just crossed <span class='ng'>₦25,000</span> total earnings! StudEarn is the one 🔥`},
+  {av:'👨🏾',name:'Godwin E.',time:'25m ago',msg:`Referred 20 people — <span class='ng'>₦20,000 earned!</span> My school is hooked 😂`},
+  {av:'👩🏾',name:'Loveth N.',time:'23m ago',msg:`Spin + referral today — <span class='ng'>₦3,500 total</span> earned! Keep grinding 💪`},
+  {av:'👨🏿',name:'Madu C.',time:'26m ago',msg:`Withdrawal of <span class='ng'>₦22,000</span> sent to GTBank! Confirmed ✅🔥`},
+  {av:'👩🏽',name:'Ruth A.',time:'24m ago',msg:`Joined from my friend's link — <span class='nb'>₦1,500 bonus</span> for both of us! ❤️`},
+  {av:'👨🏾',name:'Clement O.',time:'27m ago',msg:`All tasks done, 8 referrals — <span class='ng'>₦2 more to go</span> for withdrawal! 🎯`},
 ];
 let ni=0,activeNotif=null;
 const nZone=document.getElementById('notifZone');
