@@ -2085,12 +2085,25 @@ async function doShare() {
   const state = getState();
   if (state.shareDone) { showToast('✅ Already shared today!'); return; }
   const u = getUser();
-  const msg = `💰 *I'm earning real cash on StudEarn!*
+  const msg = `🚨 *This is not a joke — read carefully.*
 
-Nigerian students are withdrawing ₦25,000+ weekly. Complete simple tasks and get paid directly to your bank account! 💸
+I just got paid ₦${(u?.balance||1000).toLocaleString()} on StudEarn and I'm withdrawing soon 💸
 
-Join with my link and get ₦1,000 free 👇
-${SITE}/?ref=${u?.referral_code||''}`;
+This platform pays Nigerian students real cash for:
+✅ Simple daily tasks (5 minutes)
+✅ Referring friends — ₦1,000 per person
+✅ Daily spin — up to ₦2,500
+✅ School fees support & upkeep cash
+
+I was skeptical at first too. But the money is real and it's going straight to my bank account.
+
+Don't miss this — join free with my link 👇
+${SITE}/?ref=${u?.referral_code||''}
+
+Use my invite code: *${u?.referral_code||''}*
+You get a ₦1,000 bonus just for signing up 🎁
+
+⚠️ This link is personal — share privately only.`;
   const waUrl = `https://wa.me/?text=${encodeURIComponent(msg)}`;
   const waIntent = `intent://send?text=${encodeURIComponent(msg)}#Intent;package=com.whatsapp;scheme=whatsapp;end`;
 
@@ -2142,10 +2155,33 @@ async function doWatch() {
 function copyRef() {
   const u = getUser();
   const link = u ? `${SITE}/?ref=${u.referral_code}` : SITE;
-  if (navigator.clipboard) { navigator.clipboard.writeText(link); }
-  showToast('✅ Referral link copied!');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(link)
+      .then(() => showToast('✅ Referral link copied!'))
+      .catch(() => {
+        // Fallback for Android
+        const el = document.createElement('textarea');
+        el.value = link;
+        el.style.position = 'fixed';
+        el.style.opacity = '0';
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        showToast('✅ Referral link copied!');
+      });
+  } else {
+    const el = document.createElement('textarea');
+    el.value = link;
+    el.style.position = 'fixed';
+    el.style.opacity = '0';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    showToast('✅ Referral link copied!');
+  }
 }
-
 function joinWaCommunity() {
   window.open(WA_COMMUNITY, '_blank');
 }
